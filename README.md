@@ -1,1 +1,0 @@
-# Cordova_shopping
