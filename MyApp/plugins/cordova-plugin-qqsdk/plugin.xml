@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-qqsdk"
+  version="0.4.0">
+
+  <name>YCQQ</name>
+  <description>Cordova YCQQ Plugin</description>
+  <license>MIT</license>
+  <keywords>cordova,qq</keywords>
+  <repo>https://github.com/iVanPan/Cordova_QQ</repo>
+  <issue>https://github.com/iVanPan/Cordova_QQ/issues</issue>
+
+  <preference name="QQ_APP_ID" />
+
+  <!--require cordova version -->
+  <engines>
+    <engine name="cordova" version=">=4.0.0" />
+     <engine name="cordova-android" version=">=4.0.0" />
+  </engines>
+
+  <!-- js module-->
+  <js-module src="www/ycqq.js" name="ycqq">
+    <clobbers target="YCQQ" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+        <feature name="YCQQ">
+         <param name="ios-package" value="YCQQ"/>
+       </feature>
+       <!--whitelist for QQ SDK-->
+      <access origin = "https://openmobile.qq.com/*"/>
+      <access origin = "http://qzonestyle.gtimg.cn/*"/>
+      <access origin = "http://pub.idqqimg.com/*"/>
+      <access origin = "http://qzs.qq.com/*"/>
+      <access origin = "http://m.qzone.com/*"/>
+      <access origin = "http://*.ptlogin2.qq.com/*"/>
+      <access origin = "http://*.qq.com/*"/>
+      <access origin = "http://q2.qlogo.cn/*" />
+       <preference name="QQ_APP_ID" value="$QQ_APP_ID" />
+     </config-file>
+
+    <!--set ios URLTypes for QQ SDK -->
+   <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+      <array>
+        <dict>
+          <key>CFBundleTypeRole</key>
+          <string>Editor</string>
+          <key>CFBundleURLName</key>
+          <string>tencentopenapi</string>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>tencent$QQ_APP_ID</string>
+          </array>
+        </dict>
+      </array>
+    </config-file>
+
+    <!--scheme query whitlist-->
+    <config-file platform="ios" target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+        <array>
+            <string>mqqapi</string>
+            <string>mqq</string>
+            <string>mqqOpensdkSSoLogin</string>
+            <string>mqqconnect</string>
+            <string>mqqopensdkdataline</string>
+            <string>mqqopensdkgrouptribeshare</string>
+            <string>mqqopensdkfriend</string>
+            <string>mqqopensdkapi</string>
+            <string>mqqopensdkapiV2</string>
+            <string>mqqopensdkapiV3</string>
+            <string>mqzoneopensdk</string>
+            <string>wtloginmqq</string>
+            <string>wtloginmqq2</string>
+            <string>mqqwpa</string>
+            <string>mqzone</string>
+            <string>mqzonev2</string>
+            <string>mqzoneshare</string>
+            <string>wtloginqzone</string>
+            <string>mqzonewx</string>
+            <string>mqzoneopensdkapiV2</string>
+            <string>mqzoneopensdkapi19</string>
+            <string>mqzoneopensdkapi</string>
+            <string>mqzoneopensdk</string>
+        </array>
+    </config-file>
+    <header-file src="src/ios/YCQQ.h"/>
+    <source-file src="src/ios/YCQQ.m"/>
+    <!--required frameworks for qq sdk-->
+    <framework src="CoreGraphics.framework" />
+    <framework src="CoreTelephony.framework" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="Security.framework" />
+    <framework src="libiconv.tbd" />
+    <framework src="libsqlite3.tbd" />
+    <framework src="libstdc++.tbd" />
+    <framework src="libz.tbd" />
+    <!--QQ SDK version 3.1.0-->
+    <framework src="src/ios/TencentOpenAPI.framework" custom="true" framework="true"/>
+    <resource-file src="src/ios/TencentOpenApi_IOS_Bundle.bundle" />
+
+    <info>
+      安装完插件，请用XCode打开工程，查看URL Types里面QQ的URL type有没有，如果没有请手动添加.after installing this plugin,check the URL Types in your Xcode project.If you don't find URL Types for qqsdk，manually add it.
+    </info>
+  </platform>
+
+  <!-- android -->
+  <platform name="android">
+    <!-- <hook type="before_plugin_install" src="scripts/android/android-hook.js" /> -->
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="YCQQ" >
+        <param name="android-package" value="org.zy.yuancheng.qq.YCQQ"/>
+      </feature>
+      <!--whitelist for QQ SDK-->
+      <access origin = "https://openmobile.qq.com/*"/>
+      <access origin = "http://qzonestyle.gtimg.cn/*"/>
+      <access origin = "http://pub.idqqimg.com/*"/>
+      <access origin = "http://qzs.qq.com/*"/>
+      <access origin = "http://m.qzone.com/*"/>
+      <access origin = "http://*.ptlogin2.qq.com/*"/>
+      <access origin = "http://*.qq.com/*"/>
+      <access origin = "http://q2.qlogo.cn/*" />
+
+      <preference name="QQ_APP_ID" value="$QQ_APP_ID" />
+    </config-file>
+  <!--permission for QQ SDK -->
+  <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+  <!--QQ webview Auth Activity -->
+  <config-file target="AndroidManifest.xml" parent="/manifest/application">
+   <activity
+         android:name="com.tencent.tauth.AuthActivity"
+         android:noHistory="true"
+         android:launchMode="singleTask" >
+      <intent-filter>
+             <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+             <data android:scheme="tencent$QQ_APP_ID"/>
+      </intent-filter>
+   </activity>
+    <activity
+      android:name="com.tencent.connect.common.AssistActivity"
+      android:configChanges="orientation|keyboardHidden"
+      android:screenOrientation="portrait"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+    </activity>
+  </config-file>
+  <source-file src="src/android/YCQQ.java" target-dir="src/org/zy/yuancheng/qq" />
+  <!--QQ SDK version 3.1.0-->
+  <source-file src="src/android/open_sdk_r5756.jar" target-dir="libs/" />
+  <source-file src="src/android/mta-sdk-1.6.2.jar" target-dir="libs/" />
+  <framework src="com.android.support:support-v4:23.3.0+" />
+  </platform>
+</plugin>
