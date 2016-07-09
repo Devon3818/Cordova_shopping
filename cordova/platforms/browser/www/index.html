@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+	<head>
+		<!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="css/my-app.css">
+		<title>Hello World</title>
+		<style>
+		
+			* { margin: 0; padding: 0;}
+			li { list-style: none;}
+			.clear:after { content: ' '; display: block; clear: both;}
+			.fl { float: left;}
+			.classify_ul { background: #fff; width: 100%;}
+			.classify_ul li { margin-bottom: 22px; position: relative; text-align: center; font-size: 15px; width: 33.3%; padding-bottom: 33.3%; background-size: contain;}
+			.classify_ul li p { color: #808080; width: 100%; text-align: center; position: absolute; bottom: -28px; left: 0;}
+			
+			#classify { padding-top: 44px;}
+			
+			.views { overflow: hidden;}
+			.toolbar { transition: bottom 700ms;  -webkit-transition: bottom 700ms;}
+			.hide { bottom: -60px;}
+			.list-block {
+				margin-top: 0px;
+			}
+			
+			.swiper-slide {
+				background: #fff;
+				box-sizing: border-box;
+				border: none;
+				overflow: hidden;
+			}
+			
+			.swiper-slide span {
+				text-align: center;
+				display: block;
+				margin: 20px;
+				font-size: 21px;
+			}
+			
+			.swiper-container {
+				height: 180px;
+				margin: 0 0 20px;
+			}
+			.swiper-container2 {
+				height: 360px;
+				margin: 0 0 20px;
+			}
+			
+			#product { padding-top: 10px; padding-bottom: 80px;}
+			
+			.swiper-container2 { width: 100%; overflow: hidden; margin-bottom: 0; position: relative; background: yellowgreen;}
+			.swiper-pagination-product { z-index: 999; position: absolute; bottom: 0; left: 200px;}
+			
+			#product .tab { min-height: 300px;}
+			#product .produc-show-img { display: block; width: 100%; border: none;}
+			
+			#product_bottom_bar { overflow: hidden; padding-top: 6px;}
+			#product_bottom_bar .button { width: 120px; height: 40px; line-height: 40px; float: right; margin-right: 10px;}
+			#product_bottom_bar .shopping { float: left; margin-left: 10px; width: 40px; height: 40px; background: url(img/shop.png) no-repeat center; background-size: calc(70%) ;}
+			#product_bottom_bar .sele { border: 1px solid #E4E4E4; overflow: hidden; box-sizing: border-box; width: 120px; height: 40px; line-height: 40px; float: left; margin-left: 30px;}
+		
+			#product_bottom_bar .sele span,#product_bottom_bar .sele em { margin: 0; padding: 0; display: inline-block; text-align: center; line-height: 40px;}
+			#product_bottom_bar .sele span { width: 39px; height: 40px; background: #fff;}
+			#product_bottom_bar .sele em { width: 40px; height: 40px; background: #F1F1F1;}
+			
+			.navbar { color: #fff; background: #11cd6e;}
+			
+		</style>
+	</head>
+
+	<body>
+		
+		
+		<!-- Status bar overlay for fullscreen mode-->
+		<div class="statusbar-overlay"></div>
+		<!-- Panels overlay-->
+		<div class="panel-overlay"></div>
+		<!-- Left panel with reveal effect-->
+		<div class="panel panel-left panel-reveal">
+			<div class="content-block">
+				<p>Left panel content goes here</p>
+			</div>
+		</div>
+		<!-- Right panel with cover effect-->
+		<div class="panel panel-right panel-cover">
+			<div class="content-block">
+				<p>Right panel content goes here</p>
+			</div>
+		</div>
+		<!-- Views, and they are tabs-->
+		<!-- We need to set "toolbar-through" class on it to keep space for our tab bar-->
+		<div class="views tabs toolbar-through">
+			<!-- Your first view, it is also a .tab and should have "active" class to make it visible by default-->
+			<div id="view-1" class="view view-main tab active">
+
+				<div class="navbar">
+					<div class="navbar-inner">
+						<div class="center sliding">特卖精选</div>
+					</div>
+				</div>
+
+				<!-- Pages-->
+				<div class="pages navbar-through">
+					<!-- Page, data-page contains page name-->
+					<div data-page="index-1" class="page">
+						<!-- Scrollable page content-->
+						<div class="page-content pull-to-refresh-content" data-ptr-distance="55">
+
+							<!-- 默认的下拉刷新层 -->
+							<div class="pull-to-refresh-layer">
+								<div class="preloader"></div>
+								<div class="pull-to-refresh-arrow"></div>
+							</div>
+
+							<!-- 下面是正文 -->
+							<div class="list-block">
+
+								<!--banner-->
+								<div class="swiper-container swiper-slow">
+									<div class="swiper-pagination swiper-pagination-index"></div>
+									<div class="swiper-wrapper">
+										<div class="swiper-slide" style="background: url(img/index_banner_1.png) no-repeat; background-size: cover;"><span></span></div>
+										<div class="swiper-slide" style="background: url(img/index_banner_2.png) no-repeat; background-size: cover;"><span></span></div>
+										<div class="swiper-slide" style="background: url(img/index_banner_3.png) no-repeat; background-size: cover;"><span></span></div>
+									</div>
+								</div>
+
+								<div class="card">
+									<a href="product.html?id=1" class="link item-link">
+										<div class="card-header color-white" style="align-items: flex-end; height: 40vw; background: url(img/banner.jpg) no-repeat; background-size: cover;">Card header</div>
+									</a>
+									<div class="card-content">
+										<div class="card-content-inner">
+
+											<p>Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.</p>
+										</div>
+									</div>
+									<div class="card-footer">
+										<a href="#" class="link">￥2.00</a>
+										<a href="product.html?id=1" class="link item-link">Read more</a>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header color-white" style="align-items: flex-end; height: 40vw; background: url(img/banner.jpg) no-repeat; background-size: cover;">Card header</div>
+									<div class="card-content">
+										<div class="card-content-inner">
+
+											<p>Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.</p>
+										</div>
+									</div>
+									<div class="card-footer">
+										<a href="#" class="link">￥2.00</a>
+										<a href="product.html?id=2" class="link item-link">Read more</a>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header color-white" style="align-items: flex-end; height: 40vw; background: url(img/banner.jpg) no-repeat; background-size: cover;">Card header</div>
+									<div class="card-content">
+										<div class="card-content-inner">
+
+											<p>Card with header and footer.</p>
+										</div>
+									</div>
+									<div class="card-footer">
+										<a href="#" class="link">￥2.00</a>
+										<a href="product.html" class="link item-link">Read more</a>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header color-white" style="align-items: flex-end; height: 40vw; background: url(img/banner.jpg) no-repeat; background-size: cover;">Card header</div>
+									<div class="card-content">
+										<div class="card-content-inner">
+
+											<p>Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.</p>
+										</div>
+									</div>
+									<div class="card-footer">
+										<a href="#" class="link">￥2.00</a>
+										<a href="product.html?id=1" class="link item-link">Read more</a>
+									</div>
+								</div>
+
+								<div class="card">
+									<div class="card-header">New Releases:</div>
+
+									<div class="card-content">
+										<div class="list-block media-list">
+											<ul>
+												<li class="item-content">
+													<div class="item-media">
+														<img src="img/logo.png" width="44">
+													</div>
+													<div class="item-inner">
+														<div class="item-title-row">
+															<div class="item-title">Yellow Submarine</div>
+														</div>
+														<div class="item-subtitle">Beatles</div>
+													</div>
+												</li>
+												<li class="item-content">
+													<div class="item-media">
+														<img src="img/logo.png" width="44">
+													</div>
+													<div class="item-inner">
+														<div class="item-title-row">
+															<div class="item-title">Yellow Submarine</div>
+														</div>
+														<div class="item-subtitle">Beatles</div>
+													</div>
+												</li>
+												<li class="item-content">
+													<div class="item-media">
+														<img src="img/logo.png" width="44">
+													</div>
+													<div class="item-inner">
+														<div class="item-title-row">
+															<div class="item-title">Yellow Submarine</div>
+														</div>
+														<div class="item-subtitle">Beatles</div>
+													</div>
+												</li>
+												<li class="item-content">
+													<div class="item-media">
+														<img src="img/logo.png" width="44">
+													</div>
+													<div class="item-inner">
+														<div class="item-title-row">
+															<div class="item-title">Yellow Submarine</div>
+														</div>
+														<div class="item-subtitle">Beatles</div>
+													</div>
+												</li>
+												<li class="item-content">
+													<div class="item-media">
+														<img src="img/logo.png" width="44">
+													</div>
+													<div class="item-inner">
+														<div class="item-title-row">
+															<div class="item-title">Yellow Submarine</div>
+														</div>
+														<div class="item-subtitle">Beatles</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+									<div class="card-footer">
+										<span>January 20, 2015</span>
+										<span>5 comments</span>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Second view (for second wrap)-->
+			<div id="view-2" class="view tab">
+				<!-- We can make with view with navigation, let's add Top Navbar-->
+				<div class="navbar">
+					<div class="navbar-inner">
+						<div class="center sliding">商品分类</div>
+					</div>
+				</div>
+				<div class="pages  navbar-fixed">
+					<div data-page="index-2" class="page">
+						<section id="classify">
+							
+							<ul class="classify_ul clear">
+								<li class="fl" style="background: url(img/1.jpg) center no-repeat; background-size: contain;">
+									
+									<p>营养保健</p>
+								</li>
+								<li class="fl" style="background: url(img/2.jpg) center no-repeat; background-size: contain;">
+									
+									<p>母婴用品</p>
+								</li>
+								<li class="fl" style="background: url(img/3.jpg) center no-repeat; background-size: contain;">
+									
+									<p>美容护肤</p>
+								</li>
+								<li class="fl" style="background: url(img/1.jpg) center no-repeat; background-size: contain;">
+									
+									<p>营养保健</p>
+								</li>
+								<li class="fl" style="background: url(img/2.jpg) center no-repeat; background-size: contain;">
+									
+									<p>母婴用品</p>
+								</li>
+								<li class="fl" style="background: url(img/3.jpg) center no-repeat; background-size: contain;">
+									
+									<p>美容护肤</p>
+								</li>
+								<li class="fl" style="background: url(img/2.jpg) center no-repeat; background-size: contain;">
+									
+									<p>进口食品</p>
+								</li>
+								<li class="fl" style="background: url(img/1.jpg) center no-repeat; background-size: contain;">
+									
+									<p>酒水茶饮</p>
+								</li>
+								<li class="fl" style="background: url(img/3.jpg) center no-repeat; background-size: contain;">
+									
+									<p>居家日用</p>
+								</li>
+							</ul>
+							
+						</section>
+					</div>
+				</div>
+			</div>
+			<div id="view-3" class="view tab">
+				<div class="pages navbar-fixed">
+					<div data-page="index-3" class="page">
+						<div class="navbar">
+							<div class="navbar-inner">
+								<div class="center">购物车</div>
+							</div>
+						</div>
+						<div class="page-content">
+							
+							<!--购物车选择-->
+							<div id="shop_wrap">
+			
+								<ul class="clear">
+									
+									<li class="clear">
+										
+										<div class="fl check_wrap">
+											
+											<span class="check_wrap_span ok"></span>
+											
+										</div>
+										
+										<div class="fl shop_dec cleaer">
+											
+											<img src="img/1.jpg" class="fl" />
+											
+											<div class="fl cont cleaer">
+												<h3>产品名称产产品名称产</h3>
+												<p class="clear">￥200.00</p>
+												<div class="adds fl">
+													<span>+</span><em>99</em><span>-</span>
+												</div>
+												
+											</div>
+											<em class="dele">删除</em>
+											
+											
+										</div>
+										
+									</li>
+									<li class="clear">
+										
+										<div class="fl check_wrap">
+											
+											<span class="check_wrap_span"></span>
+											
+										</div>
+										
+										<div class="fl shop_dec cleaer">
+											
+											<img src="img/1.jpg" class="fl" />
+											
+											<div class="fl cleaer">
+												<h3>产品名称产产品名称产</h3>
+												<p>￥200.00</p>
+												<div class="adds cleaer">
+													<span>+</span><em>99</em><span>-</span>
+												</div>
+											</div>
+											<em class="dele">删除</em>
+											
+											
+										</div>
+										
+									</li>
+									<li class="clear">
+										
+										<div class="fl check_wrap">
+											
+											<span class="check_wrap_span"></span>
+											
+										</div>
+										
+										<div class="fl shop_dec cleaer">
+											
+											<img src="img/1.jpg" class="fl" />
+											
+											<div class="fl cleaer">
+												<h3>产品名称产产品名称产</h3>
+												<p>￥200.00</p>
+												<div class="adds cleaer ">
+													<span>+</span><em>99</em><span>-</span>
+												</div>
+											</div>
+											<em class="dele">删除</em>
+											
+											
+										</div>
+										
+									</li>
+									<li class="clear">
+										
+										<div class="fl check_wrap">
+											
+											<span class="check_wrap_span"></span>
+											
+										</div>
+										
+										<div class="fl shop_dec cleaer">
+											
+											<img src="img/1.jpg" class="fl" />
+											
+											<div class="fl cleaer">
+												<h3>产品名称产产品名称产</h3>
+												<p>￥200.00</p>
+												<div class="adds cleaer">
+													<span>+</span><em>99</em><span>-</span>
+												</div>
+											</div>
+											
+											<em class="dele">删除</em>
+											
+										</div>
+										
+									</li>
+									
+								</ul>
+								
+							</div>
+							
+							
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="view-4" class="view tab">
+				<div class="pages navbar-fixed">
+					<div data-page="index-4" class="page">
+						<div class="navbar">
+							<div class="navbar-inner">
+								<div class="center">我的</div>
+							</div>
+						</div>
+						<div class="page-content">
+							
+							<!--个人中心-->
+							<div id="me_wrap">
+								
+								<!--顶部-->
+								<div class="top_banner">
+									
+									<div class="upic_wrap1"></div>
+									
+									<h1>Devon</h1>
+									
+								</div>
+								
+								<!--功能-->
+								<ul>
+									<li>
+										<p>代付款</p>
+									</li>
+									<li>
+										<p>代收货</p>
+									</li>
+									<li>
+										<p>收藏</p>
+									</li>
+									<li>
+										<p>收货地址</p>
+									</li>
+									<li>
+										<p>优惠券</p>
+									</li>
+									<li>
+										<p>设置</p>
+									</li>
+								</ul>
+								
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Bottom Tabbar-->
+			<div class="toolbar tabbar tabbar-labels">
+				<div class="toolbar-inner">
+					<a href="#view-1" class="tab-link active"> <i class="icon tabbar-demo-icon-1"></i><span class="tabbar-label">精选</span></a>
+					<a href="#view-2" class="tab-link"><i class="icon tabbar-demo-icon-2"></i><span class="tabbar-label">分类</span></a>
+					<a href="#view-3" class="tab-link"> <i class="icon tabbar-demo-icon-3"><span class="badge bg-red">4</span></i><span class="tabbar-label">购物车</span></a>
+					<a href="#view-4" class="tab-link"> <i class="icon tabbar-demo-icon-4"></i><span class="tabbar-label">我的</span></a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="cordova.js"></script>
+		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script type="text/javascript" src="js/test.js"></script>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="js/my-app.js"></script>
+		
+		<script type="text/javascript" src="js/test.js"></script>
+		
+		<script type="text/javascript" src="js/product.js"></script>
+	</body>
+
+</html>
