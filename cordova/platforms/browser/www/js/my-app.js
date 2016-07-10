@@ -1,10 +1,19 @@
 
 
 
+
+
+
+
+
+
 // Initialize your app
 var myApp = new Framework7({
 	
 });
+
+
+
 
 // Export selectors engine
 var $$ = Dom7;
@@ -20,8 +29,14 @@ var view2 = myApp.addView('#view-2', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-var view3 = myApp.addView('#view-3');
-var view4 = myApp.addView('#view-4');
+var view3 = myApp.addView('#view-3', {
+	    // Because we use fixed-through navbar we can enable dynamic navbar
+	    dynamicNavbar: true
+	});
+var view4 = myApp.addView('#view-4', {
+	    // Because we use fixed-through navbar we can enable dynamic navbar
+	    dynamicNavbar: true
+	});
 
 myApp.onPageInit('about', function (page) {
 	
@@ -59,8 +74,14 @@ function onPrompt(results) {
 }
 
 setTimeout(function(){
-	
-},7000);
+	myApp.addNotification({
+        title: 'Framework7',
+        subtitle: '通知副标题',
+        message: 'This is a simple notification message with custom icon and subtitle',
+        message: '这是一个包含自定义icon和副标题的通知',
+        media: '<i class="icon icon-f7"></i>'
+    });
+},3000);
 
 
 
@@ -81,4 +102,11 @@ ptrContent.on('refresh', function (e) {
         myApp.pullToRefreshDone();
     }, 2000);
 });
+
+
+
+
+
+
+
 

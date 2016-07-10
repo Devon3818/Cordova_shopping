@@ -1,4 +1,10 @@
+//商品ID
+var product_goods_id;
+
 myApp.onPageInit('product', function (page) {
+	
+	product_goods_id = page.query["id"];
+	alert(product_goods_id);
 	
 	$$(".toolbar").addClass('hide');
 	var productSwiper = myApp.swiper('.swiper-container2', {
@@ -13,6 +19,7 @@ myApp.onPageInit('product', function (page) {
 });
 
 myApp.onPageAfterBack('product', function (page) {
-	
-	$$(".toolbar").removeClass('hide');
+	if(!product_web){
+		$$(".toolbar").removeClass('hide');
+	}
 });
