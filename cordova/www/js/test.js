@@ -69,4 +69,27 @@ document.addEventListener('backbutton', backbuttonIndex, false);
 
 
 
+//====================================购物车========================================
 
+var shop_goods_html = '';
+for(var i=0; i<shop_goods.length; i++){
+	shop_goods_html+='<li class="clear">'+
+						'<div class="fl check_wrap">'+
+							'<span class="check_wrap_span"></span>'+
+						'</div>'+
+						'<div class="fl shop_dec cleaer">'+
+							'<a href="product.html" class="link item-link"><img src="'+shop_goods[i]["_pic"]+'" class="fl" /></a>'+
+							'<div class="fl cont cleaer">'+
+								'<h3>'+shop_goods[i]["_name"]+'</h3>'+
+								'<p class="clear">￥'+shop_goods[i]["_price"]+'</p>'+
+								'<div class="adds fl">'+
+									'<span>+</span><em>'+shop_goods[i]["_amount"]+'</em><span>-</span>'+
+								'</div>'+
+							'</div>'+
+							'<em class="dele">删除</em>'+
+						'</div>'+
+					'</li>';
+}
+$$('#shop_wrap ul').append(shop_goods_html);
+
+//====================================购物车=END=======================================

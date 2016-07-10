@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\cordova\MyApp\platforms\android\libs"><file name="mta-sdk-1.6.2.jar" path="E:\cordova\MyApp\platforms\android\libs\mta-sdk-1.6.2.jar"/><file name="open_sdk_r5756.jar" path="E:\cordova\MyApp\platforms\android\libs\open_sdk_r5756.jar"/></source></dataSet><dataSet config="debug"><source path="E:\cordova\MyApp\platforms\android\src\debug\jniLibs"/></dataSet></merger>
