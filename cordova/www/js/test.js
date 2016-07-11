@@ -217,5 +217,18 @@ function updataGoodsArr(){
 	
 	
 }
+
+
+//提交结算
+$('#toSettlement').click(function(){
+	var isOK = $('.goods_ls .ok').length;
+	if(isOK == 0){
+		alert("请添加商品");
+	}else{
+		alert("结算中");
+	}
+});
+
+
 //====================================购物车=END=======================================
 

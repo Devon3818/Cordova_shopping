@@ -19,7 +19,6 @@ myApp.onPageInit('product', function (page) {
 	 //添加商品到购物车
 	 $('.addbuy').click(function(){
 	 	addShop_goods();
-	 	updataShop();
 	 });
 	
 	
@@ -46,8 +45,11 @@ function addShop_goods(){
 	setTimeout(function(){
 		
 		if(!isInArr){
-			alert('555');
+			alert('添加成功');
 			shop_goods.unshift({"_id":product_goods_id,"_name":"产品名称169","_price":200,"_amount":1,"_pic":"img/product_1.jpg"});
+			updataShop();
+		}else{
+			alert("你已经添加过，请查看购物车");
 		}
 		
 	},70);
