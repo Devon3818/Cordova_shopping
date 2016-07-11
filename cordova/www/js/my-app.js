@@ -37,6 +37,19 @@ var view4 = myApp.addView('#view-4', {
 	    // Because we use fixed-through navbar we can enable dynamic navbar
 	    dynamicNavbar: true
 	});
+	
+	
+//view1 Tab切换监听
+$$('#view-1').on('show', function () {
+    mySwiper = myApp.swiper('.swiper-container', {
+	    pagination:'.swiper-pagination-index',
+	    autoplay: 3000,//可选选项，自动滑动
+	    loop : true,
+	    autoplayDisableOnInteraction : false,
+	    
+	  });
+});
+
 
 myApp.onPageInit('about', function (page) {
 	
