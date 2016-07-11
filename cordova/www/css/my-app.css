@@ -440,3 +440,8 @@ li {
 
 #setting ul { margin-bottom: 30px;}
 #setting #logout { border-radius: 10px; width: 96%; height: 36px; background: #ff3b30; text-align: center; line-height: 36px; color: #fff; display: block; margin: 0 auto;}
+
+
+#feedback { width: 100%; padding-top: 10px;}
+#feedback .feedback { width: 96%; margin: 0 auto;}
+#feedback textarea { margin-bottom: 15px; border: none; background: #FFFFFF; resize: none; width: 96%; padding: 2%; height: 120px; color: #393939; font-size: 18px; line-height: 26px;}
