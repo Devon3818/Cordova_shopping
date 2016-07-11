@@ -49,6 +49,7 @@ var mySwiper = myApp.swiper('.swiper-container', {
     pagination:'.swiper-pagination-index',
     autoplay: 3000,//可选选项，自动滑动
     loop : true,
+    autoplayDisableOnInteraction : false,
     
   });
 
