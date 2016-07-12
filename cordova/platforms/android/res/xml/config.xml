@@ -34,12 +34,15 @@
     <access origin="http://*.qq.com/*" />
     <access origin="http://q2.qlogo.cn/*" />
     <preference name="QQ_APP_ID" value="1104885342" />
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
     <feature name="Keyboard">
         <param name="android-package" onload="true" value="org.apache.cordova.labs.keyboard.Keyboard" />
     </feature>
     <allow-intent href="market:*" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <name>HelloCordova</name>
+    <name>Eshop</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -55,6 +58,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="Orientation" value="portrait" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="AutoHideSplashScreen" value="true" />
 </widget>

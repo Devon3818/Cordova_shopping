@@ -28,6 +28,9 @@
         "cordova-plugin-qqsdk": {
             "QQ_APP_ID": "1104885342",
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
     "dependent_plugins": {

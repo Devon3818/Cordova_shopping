@@ -3,7 +3,7 @@
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Eshop</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -19,6 +19,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="Orientation" value="portrait" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="AutoHideSplashScreen" value="true" />
 </widget>

@@ -71,6 +71,10 @@
                         {
                             "xml": "<preference name=\"QQ_APP_ID\" value=\"1104885342\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Accelerometer\"><param name=\"android-package\" value=\"org.apache.cordova.devicemotion.AccelListener\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -160,6 +164,9 @@
         },
         "cordova-plugin-qqsdk": {
             "QQ_APP_ID": "1104885342",
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-device-motion": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
@@ -392,6 +399,20 @@
             "clobbers": [
                 "YCQQ"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
+            "id": "cordova-plugin-device-motion.Acceleration",
+            "clobbers": [
+                "Acceleration"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
+            "id": "cordova-plugin-device-motion.accelerometer",
+            "clobbers": [
+                "navigator.accelerometer"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -403,6 +424,7 @@
         "cordova-plugin-media": "2.3.0",
         "cordova-plugin-dialogs": "1.2.1",
         "cordova-plugin-keyboard": "1.1.4",
-        "cordova-plugin-qqsdk": "0.4.0"
+        "cordova-plugin-qqsdk": "0.4.0",
+        "cordova-plugin-device-motion": "1.2.1"
     }
 }

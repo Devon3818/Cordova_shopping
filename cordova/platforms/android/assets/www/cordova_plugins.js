@@ -227,6 +227,20 @@ module.exports = [
         "clobbers": [
             "YCQQ"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
+        "id": "cordova-plugin-device-motion.Acceleration",
+        "clobbers": [
+            "Acceleration"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
+        "id": "cordova-plugin-device-motion.accelerometer",
+        "clobbers": [
+            "navigator.accelerometer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -240,7 +254,8 @@ module.exports.metadata =
     "cordova-plugin-media": "2.3.0",
     "cordova-plugin-dialogs": "1.2.1",
     "cordova-plugin-keyboard": "1.1.4",
-    "cordova-plugin-qqsdk": "0.4.0"
+    "cordova-plugin-qqsdk": "0.4.0",
+    "cordova-plugin-device-motion": "1.2.1"
 };
 // BOTTOM OF METADATA
 });

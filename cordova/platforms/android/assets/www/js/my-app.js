@@ -37,6 +37,21 @@ var view4 = myApp.addView('#view-4', {
 	    // Because we use fixed-through navbar we can enable dynamic navbar
 	    dynamicNavbar: true
 	});
+	
+	
+//view1 Tab切换监听
+$$('#view-1').on('show', function () {
+    mySwiper.stopAutoplay();
+    mySwiper = null;
+    mySwiper = myApp.swiper('.swiper-container', {
+	    pagination:'.swiper-pagination-index',
+	    autoplay: 3000,//可选选项，自动滑动
+	    loop : true,
+	    autoplayDisableOnInteraction : false,
+	    
+	  });
+});
+
 
 myApp.onPageInit('about', function (page) {
 	
@@ -49,6 +64,7 @@ var mySwiper = myApp.swiper('.swiper-container', {
     pagination:'.swiper-pagination-index',
     autoplay: 3000,//可选选项，自动滑动
     loop : true,
+    autoplayDisableOnInteraction : false,
     
   });
 
@@ -75,11 +91,10 @@ function onPrompt(results) {
 
 setTimeout(function(){
 	myApp.addNotification({
-        title: 'Framework7',
-        subtitle: '通知副标题',
-        message: 'This is a simple notification message with custom icon and subtitle',
-        message: '这是一个包含自定义icon和副标题的通知',
-        media: '<i class="icon icon-f7"></i>'
+        title: 'Eshop',
+      subtitle: '',
+        message: '欢迎来到Eshop购物商城',
+        media: '<img width="44" height="44" style="border-radius:15%" src="img/icon.png" />'
     });
 },3000);
 

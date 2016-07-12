@@ -25,7 +25,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <preference name="Orientation" value="portrait" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="AutoHideSplashScreen" value="true" />
 

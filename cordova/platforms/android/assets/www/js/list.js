@@ -16,7 +16,7 @@ myApp.onPageInit('list', function (page) {
 		}
 		
 		myApp.detachInfiniteScroll($$('.infinite-scroll'));
-		alert(666);
+		myApp.alert("到底了");
 		
 	});
 	
