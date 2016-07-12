@@ -53,8 +53,10 @@ i.tabbar-demo-icon-4 {
 	padding: 0;
 	user-select: none;	
 	-webkit-user-select: none;
-
+	font-style: normal;
 }
+
+i,em,span { padding: 0; margin: 0; font-style: normal;}
 
 li {
 	list-style: none;
@@ -74,9 +76,26 @@ li {
 	float: right;
 }
 
+.card { margin-left: 0; margin-right: 0;}
+.content-block-title { margin-top: 0;}
 
 .toolbar .toolbar-inner i { font-size: 22px;}
 
+
+
+#dv_top_menu { width: 100%; height: 80px; margin-bottom: 10px; padding-top: 10px; overflow: hidden;}
+#dv_top_menu li { width: 25%; height: 100%; overflow: hidden; text-align: center; font-size: 14px; color: #6D6D72;}
+#dv_top_menu li img { width: 30%; display: block; margin: 0 auto;}
+
+
+#new_product { background: none; width: 100%; overflow: hidden; border: none;}
+#new_product li:nth-of-type(2n+1){ margin-right: 2%;}
+#new_product li { overflow: hidden; width: 49%; padding: 5px 0; background: #fff; margin-bottom: 14px; text-align: center; font-size: 14px; line-height: 22px; color: #8E8E93;}
+#new_product li img { display: block; width: 97%; margin: 0 auto;}
+
+#copyright { text-align: center; font-size: 14px; line-height: 20px; color: #8E8E93;}
+
+#set_menu li img { display: block; width: 30%; margin: 20% auto 0;}
 
 #About_Us { position: relative;}
 #About_Us .about_close { position: absolute; top: -30px; right: 10px; font-size: 36px;}
@@ -142,7 +161,7 @@ li {
 
 .swiper-container {
 	height: 180px;
-	margin: 0 0 20px;
+	margin: 0;
 }
 
 .swiper-container2 {
@@ -271,7 +290,6 @@ li {
 #me_wrap ul li {
 	text-align: center;
 	color: #888888;
-	line-height: 4.5rem;
 	overflow: hidden;
 	float: left;
 	width: 33.3%;
