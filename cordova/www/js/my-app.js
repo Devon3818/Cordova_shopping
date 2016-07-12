@@ -91,11 +91,10 @@ function onPrompt(results) {
 
 setTimeout(function(){
 	myApp.addNotification({
-        title: 'Framework7',
-        subtitle: '通知副标题',
-        message: 'This is a simple notification message with custom icon and subtitle',
-        message: '这是一个包含自定义icon和副标题的通知',
-        media: '<i class="icon icon-f7"></i>'
+        title: 'Eshop',
+      subtitle: '',
+        message: '欢迎来到Eshop购物商城',
+        media: '<img width="44" height="44" style="border-radius:15%" src="img/icon.png" />'
     });
 },3000);
 

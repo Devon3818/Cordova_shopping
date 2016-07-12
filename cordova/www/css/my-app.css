@@ -303,11 +303,16 @@ li {
 
 
 #shop_wrap .alls {
-	padding-top: 16px;
+	padding-top: 22px;
 	color: #666;
 	width: 97%;
+	padding: 0 1.5%;
 	margin: 0 auto;
 	height: 100px;
+	position: fixed;
+	bottom: 44px;
+	left: 0;
+	background: #fff;
 }
 
 #shop_wrap .alls p {
@@ -343,6 +348,7 @@ li {
 #shop_wrap ul {
 	background: #fff;
 	width: 100%;
+	margin-bottom: 160px;
 }
 
 #shop_wrap ul li {
