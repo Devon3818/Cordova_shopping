@@ -73,13 +73,13 @@
 					<div class="navbar-inner">
 						<div class="left">
 							<a href="#" class="link item-link">
-								<i class="icon imooc-icon">&#xe036;</i>
+								<i class="icon imooc-icon" style="padding-left: 10px;">&#xe036;</i>
 							</a>
 						</div>
 						<div class="center sliding">Eshop商城</div>
 						<div class="right">
 							<a href="#" data-popup=".popup-about" class="open-popup">
-								<i class="icon imooc-icon">&#xe996;</i>
+								<i class="icon imooc-icon" style="padding-right: 10px;">&#xe996;</i>
 							</a>
 						</div>
 					</div>
@@ -400,16 +400,21 @@
 
 								</ul>
 								<!--商品总和-->
-								<div class="alls clear">
 
-									<div class="alls_top clear">
-										<p class="fl">以选择商品<span class="AllGoods">0</span>件</p>
-										<p class="fr">商品总价：￥<span class="AllGoods_price">0.00</span></p>
+								<div id="shop_alls" class="clear">
+
+									<div class="shop_alls_sele_add_wrap fr">
+
 									</div>
 
-									<div class="button color-red alls_btn fr" id="toSettlement">结算</div>
-									<p class="spice fr">￥<span class="settlement">0.00</span></p>
+									<div class="fr" id="toSettlement">结算</div>
+									<div class="shop_alls_div fr">
+										<p class="shop_alls_div_alls">合计 : ￥<span class="AllGoods_price">25</span></p>
+										<p class="shop_alls_div_sele">以选择商品:<span class="AllGoods">0</span>件</p>
+									</div>
+
 								</div>
+
 							</div>
 
 						</div>
@@ -503,10 +508,13 @@
 			<div id="About_Us">
 				<a href="#" class="close-popup about_close"><i class="imooc-icon">&#xe8a9;</i></a>
 				<div class="content-block">
-					<h2>关于我们</h2>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel commodo massa, eu adipiscing mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ultricies dictum neque, non varius tortor fermentum at. Curabitur auctor cursus imperdiet. Nam molestie nisi nec est lacinia volutpat in a purus. Maecenas consectetur condimentum viverra. Donec ultricies nec sem vel condimentum. Phasellus eu tincidunt enim, sit amet convallis orci. Vestibulum quis fringilla dolor. </p>
-					<p>Mauris commodo lacus at nisl lacinia, nec facilisis erat rhoncus. Sed eget pharetra nunc. Aenean vitae vehicula massa, sed sagittis ante. Quisque luctus nec velit dictum convallis. Nulla facilisi. Ut sed erat nisi. Donec non dolor massa. Mauris malesuada dolor velit, in suscipit leo consectetur vitae. Duis tempus ligula non eros pretium condimentum. Cras sed dolor odio.</p>
+					<h2>关于Eshop</h2>
+					<img style="width: 50%; display: block; margin: 30px auto;" src="img/face0.png" />
+					<p>作者:Devon</p>
+					<p>QQ:849996781</p>
+					<p>Eshop是基于 <a class="external" href="http://cordova.apache.org/">cordova 6.2.0</a> + <a class="external" href="http://framework7.io/">Framework7</a>开发的实战例子，后期将配上后台，基于<a class="external" href="https://nodejs.org/" >Node.js</a> + <a class="external" href="http://www.expressjs.com.cn/" >Express</a> + <a class="external" href="https://www.mongodb.com/" >Mongodb</a>，敬请期待！</p>
+					<p>Eshop项目将不断更新，目前只支持Android，IOS之后将会推出，请时刻关注。如果你喜欢，请在GitHub点击Start 或 Fork</p>
+					<p style="word-wrap:break-word;">GitHub:<a class="external" href="https://github.com/kongdewen1994/Cordova_shopping">https://github.com/kongdewen1994/Cordova_shopping</a></p>
 
 				</div>
 			</div>
@@ -541,7 +549,7 @@
 		<script type="text/javascript" src="js/evaluate.js"></script>
 
 		<script type="text/javascript" src="js/goods.js"></script>
-		
+
 		<script type="text/javascript" src="js/shake.js"></script>
 
 	</body>

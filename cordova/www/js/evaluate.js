@@ -1,14 +1,10 @@
-myApp.onPageInit('evaluate', function (page) {
-	
+myApp.onPageInit('evaluate', function(page) {
+
 	$$(".toolbar").addClass('hide');
-	
+
 });
 
+myApp.onPageAfterBack('evaluate', function(page) {
 
-
-myApp.onPageAfterBack('evaluate', function (page) {
-	
 	$$(".toolbar").removeClass('hide');
 });
-
-
