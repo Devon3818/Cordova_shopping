@@ -41,6 +41,8 @@ var view4 = myApp.addView('#view-4', {
 	
 //view1 Tab切换监听
 $$('#view-1').on('show', function () {
+    mySwiper.stopAutoplay();
+    mySwiper = null;
     mySwiper = myApp.swiper('.swiper-container', {
 	    pagination:'.swiper-pagination-index',
 	    autoplay: 3000,//可选选项，自动滑动
