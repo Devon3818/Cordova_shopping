@@ -577,3 +577,49 @@ li {
 	background: url(../img/y1y_bg.png) no-repeat center;
 	background-size: cover;
 }
+
+
+
+#address_list {
+	width: 100%;
+	background: #fff;
+}
+
+#address_list li {
+	width: 100%;
+	height: 70px;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #EFEFEF;
+}
+
+#address_list .address_left {
+	width: 80%;
+	height: 100%;
+	background: #fff;
+	text-indent: 10px;
+	border-right: 1px dashed #EFEFEF;
+	box-sizing: border-box;
+}
+
+#address_list .address_dele {
+	width: 20%;
+	height: 100%;
+	line-height:70px;
+	text-align: center;
+	background: #fff;
+	color: #A9A9A9;
+	font-size: 14px;
+}
+
+#address_list .address_left_top{
+	font-size: 14px; 
+	line-height: 14px;
+	color: #A9A9A9;
+}
+
+#address_list .address_left_top span {
+	margin-right: 10px;
+}
+
