@@ -1,12 +1,12 @@
 //商品ID
 var product_goods_id;
 
+
 myApp.onPageInit('product', function(page) {
 	var product_web_alls = 1;
 	var product_web_amountDom = $('#product_web_amount');
 	product_goods_id = page.query["id"];
-	//alert(product_goods_id);
-
+	
 	$$(".toolbar").addClass('hide');
 	var productSwiper = myApp.swiper('.swiper-container2', {
 		pagination: '.swiper-pagination-product',

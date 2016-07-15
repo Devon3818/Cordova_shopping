@@ -11,33 +11,9 @@ window.onerror = function(msg, url, line) {
 	return false;
 };
 
-document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {
 
-	YCQQ.checkClientInstalled(function() {
-		//alert('client is installed');
-	}, function() {
-		// 如果安装的QQ客户端版本太低，不支持SSO登录也会返回没有安装客户端的错误
-		//alert('client is not installed');
-	});
 
-}
-
-//qq授权登录
-function openQQ() {
-
-	var checkClientIsInstalled = 0; //默认值是 0,仅仅针对 iOS平台有效![]()
-	YCQQ.ssoLogin(function(args) {
-		alert("token is " + args.access_token);
-		alert("userid is " + args.userid);
-		//alert("expires_time is "+ new Date(parseInt(args.expires_time)) + " TimeStamp is " +args.expires_time);
-
-	}, function(failReason) {
-		alert(failReason);
-	}, checkClientIsInstalled);
-
-}
 
 //关闭程序
 //setTimeout(function(){navigator.app.exitApp();},10000);
@@ -207,3 +183,24 @@ $('#toSettlement').click(function() {
 });
 
 //====================================购物车=END=======================================
+
+
+
+
+//=========================================用户缓存========================================
+
+if(window.localStorage.uid){
+	alert(window.localStorage.uid);
+	window.localStorage.clear();
+}else{
+	//alert('err');
+	//window.localStorage.uid = 1;
+	$('.login_check').each(function(){
+		$(this).attr("href",'login.html');
+	});
+}
+
+
+
+//===========================================用户缓存 END======================================
+

@@ -623,3 +623,24 @@ li {
 	margin-right: 10px;
 }
 
+#login_icon {
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+#login_icon li {
+	width: 33.3%;
+	padding: 10px 0;
+	color: #999;
+	text-align: center;
+	font-size: 14px;
+	line-height: 22px;
+}
+
+#login_icon li img {
+	display: block;
+	margin: 0 auto;
+	width: 45%;
+}
+

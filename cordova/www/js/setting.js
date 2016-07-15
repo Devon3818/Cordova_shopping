@@ -1,7 +1,7 @@
 myApp.onPageInit('setting', function(page) {
 
 	$$(".toolbar").addClass('hide');
-
+	//alert($("#qq"));
 });
 
 myApp.onPageAfterAnimation('setting', function(page) {
