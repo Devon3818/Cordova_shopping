@@ -11,10 +11,6 @@ window.onerror = function(msg, url, line) {
 	return false;
 };
 
-
-
-
-
 //关闭程序
 //setTimeout(function(){navigator.app.exitApp();},10000);
 
@@ -176,31 +172,86 @@ function updataGoodsArr() {
 $('#toSettlement').click(function() {
 	var isOK = $('.goods_ls .ok').length;
 	if(isOK == 0) {
-		alert("请添加商品");
+		myApp.alert("请添加商品");
 	} else {
-		myApp.alert("一共: " + AllGoodsPriceDom.html());
+		if(window.localStorage.uid) {
+			myApp.alert("一共: " + AllGoodsPriceDom.html());
+		} else {
+			myApp.alert("请登录!");
+		}
+
 	}
 });
 
 //====================================购物车=END=======================================
 
-
-
-
 //=========================================用户缓存========================================
 
-if(window.localStorage.uid){
-	alert(window.localStorage.uid);
+if(window.localStorage.uid) {
+	//alert(window.localStorage.uid);
 	window.localStorage.clear();
-}else{
+} else {
 	//alert('err');
 	//window.localStorage.uid = 1;
-	$('.login_check').each(function(){
-		$(this).attr("href",'login.html');
+	$('.login_check').each(function() {
+		$(this).attr("href", 'login.html');
 	});
 }
 
-
-
 //===========================================用户缓存 END======================================
 
+//============================================选择头像============================================
+
+$$('.upic_wrap1').on('click', function() {
+	var buttons = [{
+		text: '选择图片',
+		label: true
+	}, {
+		text: '相册',
+		onClick: function() {
+			navigator.camera.getPicture(function(imageData){
+				
+				$('.upic_wrap1').css({'background':'url('+imageData+') no-repeat center #fff','background-size':'cover'});
+				//alert($('.upic_wrap1').css('background'));
+			}, function(){}, {saveToPhotoAlbum:true,quality:100,targetWidth:150,targetHeight:150,allowEdit : true,sourceType:2,destinationType: Camera.DestinationType.FILE_URI,EncodingType:1});
+
+		    
+		}
+	}, {
+		text: '拍照',
+		onClick: function() {
+			navigator.camera.getPicture(cameraSuccess, cameraError, {
+				saveToPhotoAlbum: true,
+				quality:90
+			});
+		}
+	}, {
+		text: '取消',
+		color: 'red'
+	}, ];
+	myApp.actions(buttons);
+});
+var pictureSource = navigator.camera.PictureSourceType;
+
+function cameraSuccess(imageData) {
+	alert(imageData);
+}
+
+function cameraError() {
+
+}
+
+function setOptions() {
+	var options = {
+		// Some common settings are 20, 50, and 100
+		quality: 50,
+		destinationType: 1,
+		encodingType: 1,
+		mediaType: 0,
+		allowEdit: true,
+		correctOrientation: true //Corrects Android orientation quirks
+	}
+	return options;
+}
+
+//===============================================选择头像 END============================================
