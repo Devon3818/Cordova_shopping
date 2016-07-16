@@ -42,6 +42,7 @@ myApp.onPageInit('product', function(page) {
 	$('.shopping').click(function() {
 		myApp.showTab('#view-3');
 		if(!product_web) {
+			
 			view1.router.back({
 				"animatePages": false
 			});
@@ -51,8 +52,14 @@ myApp.onPageInit('product', function(page) {
 			view2.router.back({
 				"animatePages": false
 			});
+			view1.router.back({
+				"animatePages": false
+			});
 			setTimeout(function() {
 				view2.router.back({
+					"animatePages": false
+				});
+				view1.router.back({
 					"animatePages": false
 				});
 			}, 70);
