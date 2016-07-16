@@ -3,58 +3,71 @@
 		<div class="left">
 			<a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a>
 		</div>
-		<div class="center sliding">我的地址</div>
+		<div class="center sliding">个人资料</div>
 	</div>
 </div>
 <div class="pages">
-	<div data-page="address_editor" class="page">
+	<div data-page="user" class="page">
 		<div class="page-content">
 
 			<div class="list-block">
-				<ul>
+				<ul id="user_ul">
 					<!-- Text inputs -->
 					<li>
 						<div class="item-content">
+
 							<div class="item-inner">
-								<div class="item-title label">姓名</div>
+								<div class="item-title label">昵称</div>
 								<div class="item-input">
-									<input id="address_editor_name" type="text" maxlength="11" placeholder="收货人姓名">
+									<input type="text" placeholder="Your name" value="Devon">
 								</div>
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="item-content">
+
 							<div class="item-inner">
-								<div class="item-title label">手机</div>
+								<div class="item-title label">邮箱</div>
 								<div class="item-input">
-									<input id="address_editor_tel" type="tel" maxlength="11" placeholder="联系电话">
+									<input type="email" placeholder="E-mail" value="k849996781@vip.qq.com">
 								</div>
 							</div>
 						</div>
 					</li>
 
+					<!-- Select -->
 					<li>
 						<div class="item-content">
+
 							<div class="item-inner">
-								<div class="item-title label">详细地址</div>
+								<div class="item-title label">性别</div>
 								<div class="item-input">
-									<input id="address_editor_address" type="text" placeholder="地址">
+									<select>
+										<option>男</option>
+										<option>女</option>
+									</select>
 								</div>
 							</div>
 						</div>
 					</li>
-					<!--<li>
+					<!-- Date -->
+					<li>
 						<div class="item-content">
+
 							<div class="item-inner">
+								<div class="item-title label">出生日期</div>
 								<div class="item-input">
-									<input type="text" placeholder="Your car" readonly id="picker-dependent">
+									<input type="date" placeholder="Birth day" value="2016-07-16">
 								</div>
 							</div>
 						</div>
-					</li>-->
+					</li>
+					
 				</ul>
-
+				
+				<a id="user_save" href="#" class="button button-fill color-green">保存</a>
+				
 			</div>
 
 		</div>

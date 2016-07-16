@@ -17,4 +17,5 @@ myApp.onPageAfterAnimation('setting', function(page) {
 myApp.onPageAfterBack('setting', function(page) {
 
 	$$(".toolbar").removeClass('hide');
+	cameraInit();
 });

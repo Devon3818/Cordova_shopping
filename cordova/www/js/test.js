@@ -202,39 +202,61 @@ if(window.localStorage.uid) {
 
 //============================================选择头像============================================
 
-$$('.upic_wrap1').on('click', function() {
-	var buttons = [{
-		text: '选择图片',
-		label: true
-	}, {
-		text: '相册',
-		onClick: function() {
-			navigator.camera.getPicture(function(imageData){
-				
-				$('.upic_wrap1').css({'background':'url('+imageData+') no-repeat center #fff','background-size':'cover'});
-				//alert($('.upic_wrap1').css('background'));
-			}, function(){}, {saveToPhotoAlbum:true,quality:100,targetWidth:150,targetHeight:150,allowEdit : true,sourceType:2,destinationType: Camera.DestinationType.FILE_URI,EncodingType:1});
+//初始化选择头像点击事件
+function cameraInit() {
+	$('.upic_wrap1').unbind('click');
+	$('.upic_wrap1').on('click', function() {
+		var buttons = [{
+			text: '选择图片',
+			label: true
+		}, {
+			text: '相册',
+			onClick: function() {
+				navigator.camera.getPicture(function(imageData) {
 
-		    
-		}
-	}, {
-		text: '拍照',
-		onClick: function() {
-			navigator.camera.getPicture(cameraSuccess, cameraError, {
-				saveToPhotoAlbum: true,
-				quality:90
-			});
-		}
-	}, {
-		text: '取消',
-		color: 'red'
-	}, ];
-	myApp.actions(buttons);
-});
+					$('.upic_wrap1').css({
+						'background': 'url(' + imageData + ') no-repeat center #fff',
+						'background-size': 'cover'
+					});
+					//alert($('.upic_wrap1').css('background'));
+				}, function() {}, {
+					saveToPhotoAlbum: true,
+					quality: 100,
+					targetWidth: 150,
+					targetHeight: 150,
+					allowEdit: true,
+					sourceType: 2,
+					destinationType: Camera.DestinationType.FILE_URI,
+					EncodingType: 1
+				});
+
+			}
+		}, {
+			text: '拍照',
+			onClick: function() {
+				navigator.camera.getPicture(cameraSuccess, cameraError, {
+					saveToPhotoAlbum: true,
+					quality: 90,
+					targetWidth: 200,
+					targetHeight: 200,
+					allowEdit: true
+				});
+			}
+		}, {
+			text: '取消',
+			color: 'red'
+		}, ];
+		myApp.actions(buttons);
+	});
+}
+
 var pictureSource = navigator.camera.PictureSourceType;
 
 function cameraSuccess(imageData) {
-	alert(imageData);
+	$('.upic_wrap1').css({
+		'background': 'url(' + imageData + ') no-repeat center #fff',
+		'background-size': 'cover'
+	});
 }
 
 function cameraError() {
@@ -253,5 +275,7 @@ function setOptions() {
 	}
 	return options;
 }
+
+cameraInit();
 
 //===============================================选择头像 END============================================
