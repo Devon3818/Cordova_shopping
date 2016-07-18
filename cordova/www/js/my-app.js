@@ -1,6 +1,5 @@
 // Initialize your app
 var myApp = new Framework7({
-
 });
 
 // Export selectors engine
@@ -23,6 +22,7 @@ var view4 = myApp.addView('#view-4', {
 	// Because we use fixed-through navbar we can enable dynamic navbar
 	dynamicNavbar: true
 });
+
 
 //view1 Tab切换监听
 $$('#view-1').on('show', function() {

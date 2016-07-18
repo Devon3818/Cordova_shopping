@@ -241,6 +241,20 @@ module.exports = [
         "clobbers": [
             "navigator.accelerometer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+        "id": "cordova-plugin-file-transfer.FileTransferError",
+        "clobbers": [
+            "window.FileTransferError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+        "id": "cordova-plugin-file-transfer.FileTransfer",
+        "clobbers": [
+            "window.FileTransfer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -255,7 +269,8 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.2.1",
     "cordova-plugin-keyboard": "1.1.4",
     "cordova-plugin-qqsdk": "0.4.0",
-    "cordova-plugin-device-motion": "1.2.1"
+    "cordova-plugin-device-motion": "1.2.1",
+    "cordova-plugin-file-transfer": "1.5.1"
 };
 // BOTTOM OF METADATA
 });

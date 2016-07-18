@@ -19,6 +19,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="SplashShowOnlyFirstTime" value="false" />
+        <preference name="AndroidPersistentFileLocation" value="Internal" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -27,7 +28,7 @@
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="AutoHideSplashScreen" value="true" />
+	<preference name="FadeSplashScreen" value="false"/>
 
 
     <engine name="android" spec="~5.1.1" />

@@ -1,14 +1,10 @@
-myApp.onPageInit('goods', function (page) {
-	
+myApp.onPageInit('goods', function(page) {
+
 	$$(".toolbar").addClass('hide');
-	
+
 });
 
+myApp.onPageAfterBack('goods', function(page) {
 
-
-myApp.onPageAfterBack('goods', function (page) {
-	
 	$$(".toolbar").removeClass('hide');
 });
-
-

@@ -1,12 +1,12 @@
 //商品ID
 var product_goods_id;
 
+
 myApp.onPageInit('product', function(page) {
 	var product_web_alls = 1;
 	var product_web_amountDom = $('#product_web_amount');
 	product_goods_id = page.query["id"];
-	//alert(product_goods_id);
-
+	
 	$$(".toolbar").addClass('hide');
 	var productSwiper = myApp.swiper('.swiper-container2', {
 		pagination: '.swiper-pagination-product',
@@ -42,6 +42,7 @@ myApp.onPageInit('product', function(page) {
 	$('.shopping').click(function() {
 		myApp.showTab('#view-3');
 		if(!product_web) {
+			
 			view1.router.back({
 				"animatePages": false
 			});
@@ -51,8 +52,14 @@ myApp.onPageInit('product', function(page) {
 			view2.router.back({
 				"animatePages": false
 			});
+			view1.router.back({
+				"animatePages": false
+			});
 			setTimeout(function() {
 				view2.router.back({
+					"animatePages": false
+				});
+				view1.router.back({
 					"animatePages": false
 				});
 			}, 70);

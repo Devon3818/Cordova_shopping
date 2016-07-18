@@ -37,11 +37,15 @@
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
     <feature name="Keyboard">
         <param name="android-package" onload="true" value="org.apache.cordova.labs.keyboard.Keyboard" />
     </feature>
     <allow-intent href="market:*" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <name>Eshop</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -60,4 +64,5 @@
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="FadeSplashScreen" value="false" />
 </widget>

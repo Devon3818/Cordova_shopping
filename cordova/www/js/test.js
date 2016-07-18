@@ -218,6 +218,10 @@ function cameraInit() {
 						'background': 'url(' + imageData + ') no-repeat center #fff',
 						'background-size': 'cover'
 					});
+
+					//上传图片到服务器
+					toUpload(imageData);
+
 					//alert($('.upic_wrap1').css('background'));
 				}, function() {}, {
 					saveToPhotoAlbum: true,
@@ -253,10 +257,13 @@ function cameraInit() {
 var pictureSource = navigator.camera.PictureSourceType;
 
 function cameraSuccess(imageData) {
+
 	$('.upic_wrap1').css({
 		'background': 'url(' + imageData + ') no-repeat center #fff',
 		'background-size': 'cover'
 	});
+	//上传图片到服务器
+	toUpload(imageData);
 }
 
 function cameraError() {
@@ -278,4 +285,72 @@ function setOptions() {
 
 cameraInit();
 
+//上传到服务器
+function toUpload(fileURL) {
+
+	function win(r) {
+		alert("Code = " + r.responseCode);
+		alert("Response = " + r.response);
+		alert("Sent = " + r.bytesSent);
+	}
+
+	function fail(error) {
+		alert("An error has occurred: Code = " + error.code);
+		alert("upload error source " + error.source);
+		alert("upload error target " + error.target);
+	}
+
+	var uri = encodeURI("http://www.devonhello.com/api/upload");
+
+	var options = new FileUploadOptions();
+	options.fileKey = "file";
+	options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+	//	options.mimeType = "text/plain";
+
+	var headers = {
+		'headerParam': 'headerValue'
+	};
+
+	options.headers = headers;
+
+	var ft = new FileTransfer();
+
+	ft.upload(fileURL, uri, win, fail, options);
+
+}
+
 //===============================================选择头像 END============================================
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+
+	return true;
+	//图片下载测试
+	var fileTransfer = new FileTransfer();
+	var uri = encodeURI("http://www.zshost.net/uploads/160512/1-1605121Q114Z3.jpg");
+	alert(cordova.file.externalApplicationStorageDirectory);
+	fileTransfer.download(
+		uri,
+		cordova.file.externalApplicationStorageDirectory + "kong.jpg",
+		function(entry) {
+			alert("download complete: " + entry.toURL());
+
+			$('.upic_wrap1').css({
+				'background': 'url(' + entry.toURL() + ') no-repeat center #fff',
+				'background-size': 'cover'
+			});
+		},
+		function(error) {
+			alert("download error source " + error.source);
+			alert("download error target " + error.target);
+			alert("upload error code" + error.code);
+		},
+		false, {
+			headers: {
+				"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+			}
+		}
+	);
+
+}
