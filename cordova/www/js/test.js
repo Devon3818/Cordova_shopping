@@ -226,8 +226,8 @@ function cameraInit() {
 				}, function() {}, {
 					saveToPhotoAlbum: true,
 					quality: 100,
-					targetWidth: 150,
-					targetHeight: 150,
+					targetWidth: 250,
+					targetHeight: 250,
 					allowEdit: true,
 					sourceType: 2,
 					destinationType: Camera.DestinationType.FILE_URI,
@@ -241,8 +241,8 @@ function cameraInit() {
 				navigator.camera.getPicture(cameraSuccess, cameraError, {
 					saveToPhotoAlbum: true,
 					quality: 90,
-					targetWidth: 200,
-					targetHeight: 200,
+					targetWidth: 250,
+					targetHeight: 250,
 					allowEdit: true
 				});
 			}
@@ -285,13 +285,45 @@ function setOptions() {
 
 cameraInit();
 
+//头像/图片下载
+function toDownload(url) {
+	var fileTransfer = new FileTransfer();
+	var uri = encodeURI(url);
+
+	fileTransfer.download(
+		uri,
+		cordova.file.externalApplicationStorageDirectory + "user.jpg",
+		function(entry) {
+			alert("download complete: " + entry.toURL());
+			$('.upic_wrap1').css({
+				'background': 'url(' + entry.toURL() + ') no-repeat center #fff',
+				'background-size': 'cover'
+			});
+			//缓存用户头像
+			window.localStorage.user_pic = entry.toURL();
+		},
+		function(error) {
+			alert("download error source " + error.source);
+			alert("download error target " + error.target);
+			alert("upload error code" + error.code);
+		},
+		false, {
+			headers: {
+				"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+			}
+		}
+	);
+}
+
 //上传到服务器
 function toUpload(fileURL) {
 
 	function win(r) {
-		alert("Code = " + r.responseCode);
-		alert("Response = " + r.response);
-		alert("Sent = " + r.bytesSent);
+		var url = "http://www.devonhello.com/" + r.response.substring(7);
+		//alert("Code = " + r.responseCode);
+		alert("Response = " + url);
+		//alert("Sent = " + r.bytesSent);
+		toDownload(url);
 	}
 
 	function fail(error) {
@@ -300,7 +332,7 @@ function toUpload(fileURL) {
 		alert("upload error target " + error.target);
 	}
 
-	var uri = encodeURI("http://www.devonhello.com/api/upload");
+	var uri = encodeURI("http://www.devonhello.com/eshop/upload");
 
 	var options = new FileUploadOptions();
 	options.fileKey = "file";
@@ -325,32 +357,85 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
+	//头像是否存在
+	if(window.localStorage.user_pic) {
+		$('.upic_wrap1').css({
+			'background': 'url(' + window.localStorage.user_pic + ') no-repeat center #fff',
+			'background-size': 'cover'
+		});
+	}
+
 	return true;
-	//图片下载测试
-	var fileTransfer = new FileTransfer();
-	var uri = encodeURI("http://www.zshost.net/uploads/160512/1-1605121Q114Z3.jpg");
-	alert(cordova.file.externalApplicationStorageDirectory);
-	fileTransfer.download(
-		uri,
-		cordova.file.externalApplicationStorageDirectory + "kong.jpg",
-		function(entry) {
-			alert("download complete: " + entry.toURL());
+	//创建永久性文件存储测试
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 
-			$('.upic_wrap1').css({
-				'background': 'url(' + entry.toURL() + ') no-repeat center #fff',
-				'background-size': 'cover'
+		alert('file system open: ' + fs.name);
+		fs.root.getFile('someFile.txt', {
+			create: true,
+			exclusive: false
+		}, function(fileEntry) {
+			alert(fileEntry.fullPath);
+			//alert("fileEntry is file?" + fileEntry.isFile.toString());
+			//fileEntry.name == 'someFile.txt';
+			//fileEntry.fullPath == cordova.file.externalApplicationStorageDirectory+'someFile.txt';
+			alert(fileEntry.fullPath);
+			//写并读取
+			writeFile(fileEntry, null);
+			//读
+			//readFile(fileEntry);
+
+		}, function() {
+			alert("onErrorCreateFile");
+		});
+
+	}, function() {
+		alert("onErrorLoadFs");
+	});
+
+}
+
+//文件写入
+function writeFile(fileEntry, dataObj) {
+	// Create a FileWriter object for our FileEntry (log.txt).
+	fileEntry.createWriter(function(fileWriter) {
+
+		fileWriter.onwriteend = function() {
+			alert("Successful file read...");
+			readFile(fileEntry);
+		};
+
+		fileWriter.onerror = function(e) {
+			alert("Failed file read: " + e.toString());
+		};
+
+		// If data object is not passed in,
+		// create a new Blob instead.
+		if(!dataObj) {
+			dataObj = new Blob(['{"name":"kong"}'], {
+				type: 'text/plain'
 			});
-		},
-		function(error) {
-			alert("download error source " + error.source);
-			alert("download error target " + error.target);
-			alert("upload error code" + error.code);
-		},
-		false, {
-			headers: {
-				"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-			}
 		}
-	);
 
+		fileWriter.write(dataObj);
+	});
+}
+
+//读取文件
+function readFile(fileEntry) {
+
+	fileEntry.file(function(file) {
+		var reader = new FileReader();
+
+		reader.onloadend = function() {
+			alert("Successful file read: " + this.result);
+			alert(fileEntry.fullPath);
+			alert("Successful file read: " + JSON.parse(this.result)["name"]);
+			//displayFileData(fileEntry.fullPath + ": " + this.result);
+		};
+
+		reader.readAsText(file);
+
+	}, function() {
+		alert("onErrorReadFile");
+	});
 }
