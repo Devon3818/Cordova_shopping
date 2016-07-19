@@ -1,0 +1,162 @@
+* { margin: 0; padding: 0;}
+body,html { width: 100%; height: 100%; font-family: arial;}
+li { list-style: none;}
+input,textarea { border: none; outline: none; resize: none;}
+a { text-decoration: none;}
+a:hover { text-decoration: none;}
+.width_fluid { width: 100%;}
+#scrollTop { cursor: pointer; display: none; z-index: 2; position: fixed; bottom: 8%; right: 3%; border-radius: 9999px; line-height: 50px; text-align: center; width: 50px; font-size: 30px; color: #FFFFFF; height: 50px; background: #c33;}
+
+.container-fluid,.conten_wrap { height: 100%;}
+#back_index { transform-style: preserve-3d; perspective: 800px; position: fixed; top: 4%; left: 0; width: 100px; height: 100px; z-index: 99999999;}
+.back { cursor: pointer; transition: all 1100ms cubic-bezier(.75,-0.98,0,1.87); transform-origin: left; transform: rotateY(100deg); width: 100px; height: 100px; line-height: 100px; text-align: center; font-size: 50px; color: #666666; background: #E4E4E4 url(../images/home/noise.png);}
+.back:hover {}
+
+#header { padding: 0; height: 100%; background: #FFFFFF; border-right: 1px solid #eaeaea; position: fixed; top: 0; left: 0;}
+#header p { text-align: center; position: absolute; bottom: 2%; padding: 0 2%; font-size: 12px; color: #999;}
+nav { width: 100%; position: relative; top: 20%;}
+nav ul { text-align: center;}
+#header nav .act { color: #c33;}
+nav .ul_nav { transition: all 700ms; width: 100%; height: 140px; line-height: 50px; color: #666;}
+nav .ul_nav:hover { color: #c33;}
+nav .ul_nav h1 { font-size: 28px; cursor: pointer;}
+nav .ul_nav h3 { font-size: 12px; padding: 0; margin: 0;}
+nav .ul_nav h2 { font-size: 16px; padding: 0; margin: 0;}
+
+.webPage { display: none;}
+#web_content section { width: 100%;}
+.page2,.page3,.page4,.page5,.page6,.page7 { opacity: 0; transition: all 1s;}
+
+#web_content { transition: all 1s; padding: 0; float: right; transform-origin: center; background: url(../images/home/grid.png) repeat;}
+.hidden_wrap { opacity: 0;}
+#video { width: 100%; height: 200px; background: url(../images/home/grid.png) repeat;}
+#main { border-top: 1px solid #eaeaea; width: 100%; background: #fafafa url(../images/home/noise.png); position: relative;}
+.lefthand,.righthand { width: 270px; position: absolute; top: -72px;}
+.lefthand { left: 10%;}
+.righthand { right: 10%;}
+.about_header { font-size: 18px; padding-bottom: 8%; padding-top: 10%; text-align: center;}
+.about_header h1 { font-size: 50px; line-height: 70px;}
+
+.my_dec { margin: 0 auto; width: 80%; overflow: hidden;}
+.my_dec p { font-size: 16px; line-height: 32px; font-weight: normal; margin-bottom: 30px;}
+.my_dec .icons { padding-top: 4%; color: #c33;}
+.my_dec .icons a { color: #c33; transition: all 700ms;}
+.my_dec .icons h1 { font-size: 0.6rem; margin: 0; transition: all 700ms; cursor: pointer;}
+.my_dec .icons h1:hover { color: #696969;}
+.my_dec .icons a:hover { color: #696969;}
+.my_dec .icons p { font-size: 0.15rem; margin: 0;}
+.my_dec .icons div { text-align: center; margin: 0 auto; margin-bottom: 30px;}
+
+
+.work_header { font-size: 18px; padding-bottom: 4%; padding-top: 2%; text-align: center;}
+.work_header h1 { font-size: 50px; line-height: 70px;}
+#web_content .work_section { width: 86%; margin: 0 auto; padding-top: 2%; overflow: hidden;}
+.work_banner { overflow: hidden; height: 170px; background: beige; margin: 2%; margin-top: 0; position: relative;}
+.shadowBG { background: #c33; opacity: 0; width: 40%; height: 100%; position: absolute; bottom: 0; right: 0; transition: all 800ms;}
+
+.WebWorks { background: url(../images/home/thumbnail.jpg) center center;}
+.Chat { background: url(../images/home/thumbnail1.jpg) center center;}
+.Introduce { background: url(../images/home/thumbnail3.jpg) center center;}
+.AppWorks { background: url(../images/home/thumbnail2.jpg) center center;}
+.Experience { background: url(../images/home/thumbnail4.jpg) center center;}
+.Team { background: url(../images/home/thumbnail5.jpg) center center;}
+
+
+
+.contact_header { font-size: 18px; padding-bottom: 8%; padding-top: 0; text-align: center;}
+.contact_header h1 { font-size: 50px; line-height: 70px;}
+
+
+.contact_section { width: 86%; margin: 3% auto; overflow: hidden;}
+.contact_dec { MIN-height: 100px; margin: 2%; padding: 0;}
+.contact_frome { MIN-height: 100px; margin: 2%; padding: 0;}
+.contact_input { width: 100%; overflow: hidden; margin-bottom: 16px; border: 1px solid dimgray; background: #FFFFFF;}
+.contact_input span { transition: all 700ms; float: left; width: 45px; height: 45px; line-height: 45px; font-size: 16px; color: #FFFFFF; text-align: center; background: dimgray;}
+.contact_input input { text-align: 12px; float: left; width: calc(98% - 45px); padding: 1%; height: 45px;}
+.contact_input textarea { float: left; width: calc(98% - 45px); padding: 1%; height: 140px;}
+.contact_dec h1 { font-size: 40px;}
+.ajaxBtn { width: 20%; line-height: 38px; cursor: pointer; color: #FFFFFF; text-align: center; background: dimgray; float: right;}
+
+footer { width: 100%; height: 300px;}
+
+
+@media screen and (max-width: 992px) {
+    #web_content { width: 100%;}
+}
+
+
+/*PAGE-2*/
+.page2 { position: relative;}
+.page2_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero.jpg) center;}
+.page2_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page2_wrap { width: 84%; margin: 0 auto;}
+.page2_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+.work_web_show_wrap { overflow: hidden; padding-top: 7%;}
+.page2_show_wrap { margin-bottom: 8%; overflow: hidden;}
+.work_show img {max-width: 100%;}
+.work_dec { padding-top: 3%;}
+
+
+
+
+/*PAGE-3*/
+.page3 { position: relative;}
+.page3_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero2.jpg) center;}
+.page3_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page3_wrap { width: 84%; margin: 0 auto;}
+.page3_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+
+.myDynamic { padding-top: 4%; width: 100%; height: 600px;}
+.myDynamic .message { overflow: hidden;}
+.myDynamic .message .face { font-size: 16px; line-height: 32px; text-align: center; float: left; width: 16%; margin: 2%;}
+.myDynamic .message .face img { max-width: 100%; border-radius: 9999px;}
+.myDynamic .message_content { float: left; width: 72%; padding-top: 4%; margin: 2%; line-height: 28px; font-size: 19px;}
+.myDynamic .message_content ul { overflow: hidden; width: 100%;}
+.myDynamic .message_content li { float: right; width: 15%; margin: 2%;}
+.myDynamic .message_content img { max-width: 100%;}
+
+/*PAGE-4*/
+.page4 { position: relative;}
+.page4_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero3.jpg) center;}
+.page4_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page4_wrap { width: 84%; margin: 0 auto;}
+.page4_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+
+/*PAGE-5*/
+.page5 { position: relative;}
+.page5_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero4.jpg) center;}
+.page5_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page5_wrap { width: 84%; margin: 0 auto;}
+.page5_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+/*PAGE-6*/
+.page6 { position: relative;}
+.page6_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero2.jpg) center;}
+.page6_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page6_wrap { width: 84%; margin: 0 auto;}
+.page6_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+
+/*PAGE-7*/
+.page7 { position: relative;}
+.page7_banner { position: fixed; width: 100%; height: 350px; background: url(../images/home/hero3.jpg) center;}
+.page7_content { background: #fafafa url(../images/home/noise.png); z-index: 999px; width: 100%; position: relative; top: 350px; height: 3999px;}
+.page7_wrap { width: 84%; margin: 0 auto;}
+.page7_title { text-align: center; padding-top: 7%; padding-bottom: 5%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

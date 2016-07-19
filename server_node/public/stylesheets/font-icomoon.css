@@ -1,0 +1,10 @@
+@font-face {font-family:'imoon-icon';
+	src: url('../fonts/icomoon.eot');
+	src: url('../fonts/icomoon.eot?') format('embedded-opentype'),
+	     url('../fonts/icomoon.woff') format('woff'),
+	     url('../fonts/icomoon.ttf') format('truetype'),
+	     url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.imooc-icon{font-family: 'imoon-icon';-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing:grayscale;font-size: 1em;text-decoration: none;font-style: normal;}
