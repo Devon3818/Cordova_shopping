@@ -29,6 +29,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
+        <meta charset="utf-8" />
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 		<meta name="format-detection" content="telephone=no">
 		<meta name="msapplication-tap-highlight" content="no">
@@ -114,22 +115,22 @@
 								<!--4个栏目-->
 								<ul class="clear" id="dv_top_menu">
 									<a href="Abulk.html" class="link item-link">
-									<li class="fl">
-										<img src="img/tg.png" />
-										<p>团购</p>
-									</li>
+										<li class="fl">
+											<img src="img/tg.png" />
+											<p>团购</p>
+										</li>
 									</a>
 									<a href="preferential.html" class="link item-link">
-									<li class="fl">
-										<img src="img/qg.png" />
-										<p>优惠购</p>
-									</li>
+										<li class="fl">
+											<img src="img/qg.png" />
+											<p>优惠购</p>
+										</li>
 									</a>
 									<a href="limit.html" class="link item-link">
-									<li class="fl">
-										<img src="img/xsg.png" />
-										<p>限时</p>
-									</li>
+										<li class="fl">
+											<img src="img/xsg.png" />
+											<p>限时</p>
+										</li>
 									</a>
 									<a href="shake.html" class="link item-link">
 										<li class="fl">
@@ -473,10 +474,10 @@
 										</li>
 									</a>
 									<a href="address.html" data-myurl="address.html" class="link item-link login_check">
-									<li>
-										<img src="img/dz.png" />
-										<p>收货地址</p>
-									</li>
+										<li>
+											<img src="img/dz.png" />
+											<p>收货地址</p>
+										</li>
 									</a>
 									<a href="coupons.html" data-myurl="coupons.html" class="link item-link login_check">
 										<li>
@@ -510,7 +511,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- 关于我们 -->
 		<div class="popup popup-about">
 			<div id="About_Us">
@@ -520,9 +520,16 @@
 					<img style="width: 50%; display: block; margin: 30px auto;" src="img/face0.png" />
 					<p>作者:Devon</p>
 					<p>QQ:849996781</p>
-					<p>Eshop是基于 <a class="external" href="http://cordova.apache.org/">cordova 6.2.0</a> + <a class="external" href="http://framework7.io/">Framework7</a>开发的实战例子，后期将配上后台，基于<a class="external" href="https://nodejs.org/" >Node.js</a> + <a class="external" href="http://www.expressjs.com.cn/" >Express</a> + <a class="external" href="https://www.mongodb.com/" >Mongodb</a>，敬请期待！</p>
+					<p>Eshop是基于
+						<a class="external" href="http://cordova.apache.org/">cordova 6.2.0</a> +
+						<a class="external" href="http://framework7.io/">Framework7</a>开发的实战例子，后期将配上后台，基于
+						<a class="external" href="https://nodejs.org/">Node.js</a> +
+						<a class="external" href="http://www.expressjs.com.cn/">Express</a> +
+						<a class="external" href="https://www.mongodb.com/">Mongodb</a>，敬请期待！</p>
 					<p>Eshop项目将不断更新，目前只支持Android，IOS之后将会推出，请时刻关注。如果你喜欢，请在GitHub点击Start 或 Fork</p>
-					<p style="word-wrap:break-word;">GitHub:<a class="external" href="https://github.com/kongdewen1994/Cordova_shopping">https://github.com/kongdewen1994/Cordova_shopping</a></p>
+					<p style="word-wrap:break-word;">GitHub:
+						<a class="external" href="https://github.com/kongdewen1994/Cordova_shopping">https://github.com/kongdewen1994/Cordova_shopping</a>
+					</p>
 
 				</div>
 			</div>
@@ -559,17 +566,17 @@
 		<script type="text/javascript" src="js/goods.js"></script>
 
 		<script type="text/javascript" src="js/shake.js"></script>
-		
+
 		<script type="text/javascript" src="js/address.js"></script>
-		
+
 		<script type="text/javascript" src="js/login.js"></script>
-		
+
 		<script type="text/javascript" src="js/address_editor.js"></script>
-		
+
 		<script type="text/javascript" src="js/Abulk.js"></script>
-		
+
 		<script type="text/javascript" src="js/preferential.js"></script>
-		
+
 		<script type="text/javascript" src="js/limit.js"></script>
 
 	</body>

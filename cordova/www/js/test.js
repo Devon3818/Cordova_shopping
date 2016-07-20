@@ -254,7 +254,6 @@ function cameraInit() {
 	});
 }
 
-var pictureSource = navigator.camera.PictureSourceType;
 
 function cameraSuccess(imageData) {
 
