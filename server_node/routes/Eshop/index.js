@@ -6,12 +6,174 @@ var formidable = require('formidable');
 var fs = require('fs');
 var TITLE = 'formidable上传示例';
 var AVATAR_UPLOAD_FOLDER = '/upload/';
+var ObjectID = require('mongodb').ObjectID;
 
+var db = new mongodb.Db('devon', server, {
+	safe: true
+});
 
 router.get('/', function(req, res, next) {
 
 	res.send('ESHOP');
 });
+
+//用户登录
+router.post('/login', function(req, res, next) {
+
+	console.log(55555);
+	console.log(req.body.id);
+	//res.send('3');
+
+	var uid = req.body.id;
+	var etoken = req.body.etoken;
+	//	
+	//	console.log(req.body.id);
+	//	console.log(req.body.etoken);
+	//	//console.log(req.body);
+	//	
+	db.open(function(error, client) {
+		if(error) {
+			db.close();
+			res.send('3');
+		} else {
+
+			//插入到数据库register
+			db.collection('eshop_register', {
+				safe: true
+			}, function(err, collection) {
+
+				collection.find({
+					//					"_id": ObjectID(uid)
+					"eid": uid
+				}).toArray(function(err, docs) {
+
+					if(docs.length == 0) {
+						//当结果为0时，注册用户
+						//res.send('666');
+
+						var data = {
+							eid: uid,
+							etoken: etoken,
+							ename: uid.substring(0,7),
+							epic: '',
+						}
+						//res.send('666');
+						collection.insert(data, {
+							safe: true
+						}, function(err, result) {
+							if(err) {
+								db.close();
+								res.send('0');
+							} else {
+								db.close();
+								console.log(data);
+								res.send(uid);
+							}
+							
+						});
+
+					} else {
+						db.close();
+						console.log(docs);
+						res.send(JSON.stringify(docs));
+					}
+
+				});
+
+			});
+
+		}
+	})
+
+});
+
+
+
+//更新头像
+router.post('/updatePic', function(req, res, next) {
+
+	//打开数据表
+	db.open(function(error, client) {
+		if(error) {
+			db.close();
+			res.render('3');
+		} else {
+
+			//插入到数据库
+			db.collection('eshop_register', {
+				safe: true
+			}, function(err, collection) {
+				var id = req.body.id;
+
+				var data = {
+					epic: req.body.pic,
+				};
+				collection.update({
+					"eid": id
+				}, {
+					$set: data
+				}, {
+					safe: true
+				}, function(err, result) {
+					if(err) {
+						res.send('0');
+					} else {
+						res.send('1');
+					}
+					db.close();
+				});
+
+			});
+
+		}
+	})
+
+})
+
+
+//更新资料
+router.post('/updateData', function(req, res, next) {
+
+	//打开数据表
+	db.open(function(error, client) {
+		if(error) {
+			db.close();
+			res.render('3');
+		} else {
+
+			//插入到数据库
+			db.collection('eshop_register', {
+				safe: true
+			}, function(err, collection) {
+				var id = req.body.id;
+				var upname = req.body.name;
+				
+				var data = {
+					ename: upname,
+				};
+				collection.update({
+					"eid": id
+				}, {
+					$set: data
+				}, {
+					safe: true
+				}, function(err, result) {
+					if(err) {
+						res.send('0');
+					} else {
+						console.log(upname);
+						res.send(upname);
+					}
+					db.close();
+				});
+
+			});
+
+		}
+	})
+
+})
+
 
 //头像上传
 router.post('/upload', function(req, res, next) {
@@ -56,6 +218,7 @@ router.post('/upload', function(req, res, next) {
 		//		console.log('url:'+newPath);
 		//		console.log(files.file.path);
 		fs.renameSync(files.file.path, newPath); //重命名
+		//updatePic(newPath);
 		res.send(newPath);
 	});
 

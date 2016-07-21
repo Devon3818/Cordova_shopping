@@ -38,16 +38,55 @@ function openQQ() {
 
 	var checkClientIsInstalled = 0; //默认值是 0,仅仅针对 iOS平台有效![]()
 	YCQQ.ssoLogin(function(args) {
-		myApp.alert("token is " + args.access_token);
-		myApp.alert("userid is " + args.userid);
+		//myApp.alert("token is " + args.access_token);
+		//myApp.alert("userid is " + args.userid);
+
+		$.ajax({
+
+			data: {
+				id: args.userid,
+				etoken: args.access_token,
+			},
+			type: "POST",
+			url: "http://www.devonhello.com/eshop/login",
+			success: function(data) {
+				if(data[0]["eid"] || data != 0) {
+					//如果用户以存在数据库（已经注册存在）
+
+					if(data[0]["epic"]) {
+						//alert("头像："+data[0]["epic"]);
+						var murl = "http://www.devonhello.com/" + data[0]["epic"].substring(7);
+						//下载并缓存
+						toDownload(murl);
+
+					}
+					//alert("ID：" + data[0]["_id"]);
+					window.localStorage.uid = data[0]["eid"];
+					window.localStorage.uname = data[0]["ename"];
+					$('#index_name').html(window.localStorage.uname);
+				} else {
+					//注册用户id到数据库
+
+					//alert("ID：" + data);
+					window.localStorage.uid = data;
+					window.localStorage.uname = data.substring(0, 7);
+					$('#index_name').html(window.localStorage.uname);
+					setTimeout(function() {
+						view4.router.back();
+					}, 70);
+				}
+
+			},
+			error: function(xhr) {
+				alert(xhr.status);
+			}
+		});
+
 		//window.localStorage.uid = args.userid;
 		$('.login_check').each(function() {
 			var ulr = $(this).attr("data-myurl");
 			$(this).attr("href", ulr);
 		});
-		setTimeout(function() {
-			view4.router.back();
-		}, 70);
 
 	}, function(failReason) {
 		myApp.alert(failReason);

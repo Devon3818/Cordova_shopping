@@ -188,8 +188,20 @@ $('#toSettlement').click(function() {
 //=========================================用户缓存========================================
 
 if(window.localStorage.uid) {
-	//alert(window.localStorage.uid);
-	window.localStorage.clear();
+	//alert(window.localStorage.uid.substring(0,7));
+	//window.localStorage.clear();
+	
+	$('#index_name').html(window.localStorage.uname);
+	
+	if(window.localStorage.upic){
+		//有缓存头像
+		$('.upic_wrap1').css({
+			'background': 'url(' + window.localStorage.upic + ') no-repeat center #fff',
+			'background-size': 'cover'
+		});
+	}
+	
+	
 } else {
 	//alert('err');
 	//window.localStorage.uid = 1;
@@ -204,6 +216,22 @@ if(window.localStorage.uid) {
 
 //初始化选择头像点击事件
 function cameraInit() {
+	
+	//重新设置个人信息
+	if(window.localStorage.uid) {
+		
+		$('#index_name').html(window.localStorage.uname);
+		
+		if(window.localStorage.upic){
+			//有缓存头像
+			$('.upic_wrap1').css({
+				'background': 'url(' + window.localStorage.upic + ') no-repeat center #fff',
+				'background-size': 'cover'
+			});
+		}	
+	}
+	
+	
 	$('.upic_wrap1').unbind('click');
 	$('.upic_wrap1').on('click', function() {
 		var buttons = [{
@@ -293,17 +321,20 @@ function toDownload(url) {
 		uri,
 		cordova.file.externalApplicationStorageDirectory + "user.jpg",
 		function(entry) {
-			alert("download complete: " + entry.toURL());
+			//alert("download complete: " + entry.toURL());
 			$('.upic_wrap1').css({
 				'background': 'url(' + entry.toURL() + ') no-repeat center #fff',
 				'background-size': 'cover'
 			});
 			//缓存用户头像
-			window.localStorage.user_pic = entry.toURL();
+			window.localStorage.upic = entry.toURL();
+			setTimeout(function() {
+				view4.router.back();
+			}, 70);
 		},
 		function(error) {
-			alert("download error source " + error.source);
-			alert("download error target " + error.target);
+			//alert("download error source " + error.source);
+			//alert("download error target " + error.target);
 			alert("upload error code" + error.code);
 		},
 		false, {
@@ -318,17 +349,18 @@ function toDownload(url) {
 function toUpload(fileURL) {
 
 	function win(r) {
-		var url = "http://www.devonhello.com/" + r.response.substring(7);
+		var murl = "http://www.devonhello.com/" + r.response.substring(7);
 		//alert("Code = " + r.responseCode);
-		alert("Response = " + url);
+		//alert("Response = " + murl);
 		//alert("Sent = " + r.bytesSent);
-		toDownload(url);
+		toDownload(murl);
+		updatePic(r.response);
 	}
 
 	function fail(error) {
 		alert("An error has occurred: Code = " + error.code);
-		alert("upload error source " + error.source);
-		alert("upload error target " + error.target);
+		//alert("upload error source " + error.source);
+		//alert("upload error target " + error.target);
 	}
 
 	var uri = encodeURI("http://www.devonhello.com/eshop/upload");
@@ -348,6 +380,28 @@ function toUpload(fileURL) {
 
 	ft.upload(fileURL, uri, win, fail, options);
 
+}
+
+
+//更新头像数据库
+function updatePic(picurl){
+	
+	$.ajax({
+
+			data: {
+				id: window.localStorage.uid,
+				pic: picurl,
+			},
+			type: "POST",
+			url: "http://www.devonhello.com/eshop/updatePic",
+			success: function(data) {
+				//alert(data);
+			},
+			error: function(xhr) {
+				//alert(xhr.status);
+			}
+		});
+	
 }
 
 //===============================================选择头像 END============================================
